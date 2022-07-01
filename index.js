@@ -43,6 +43,17 @@ app.get("/readUsers", (req, res) => {
     });
   });
 
+  app.delete("/deleteUser/:userId", (req, res) => {
+    const id = req.params.userId;
+    db.query("DELETE FROM users WHERE id = ?", id, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
 app.listen(3001, () => {
   console.log("Server is running on 3001");
 });
